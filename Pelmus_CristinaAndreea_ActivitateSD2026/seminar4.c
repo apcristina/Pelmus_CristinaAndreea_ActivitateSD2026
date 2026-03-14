@@ -11,6 +11,7 @@ struct StructuraMasina {
 	char* numeSofer;
 	unsigned char serie;
 };
+
 typedef struct StructuraMasina Masina;
 typedef struct Nod Nod;
 
@@ -73,12 +74,25 @@ void afisareListaMasini(Nod *cap) {
 	}
 }
 
-void adaugaLaInceputInLista(/*lista de masini*/ Masina masinaNoua) {
-	//adauga la inceputul listei o noua masina pe care o primim ca parametru
+void adaugaLaInceputInLista(Nod** cap, Masina masinaNoua) {
+	Nod* nou = (Nod*)malloc(sizeof(Nod));
+	nou->info = masinaNoua;
+	nou->next = *cap;
+	*cap = nou;
 }
 
 //void* se poate pune la orice functie care returneaza un pointer
 Nod* citireListaMasiniDinFisier(const char* numeFisier) {
+	FILE* f = fopen(numeFisier, "r");
+	Nod* cap = NULL;
+	while (!feof(f)) {
+		adaugaLaInceputInLista(&cap, citireMasinaDinFisier(f));
+	}
+	fclose(f);
+	return cap;
+}
+
+Nod* citireListaMasiniDinFisierInceput(const char* numeFisier) {
 	FILE* f = fopen(numeFisier, "r");
 	Nod* cap = NULL;
 	while (!feof(f)) {
@@ -113,14 +127,33 @@ float calculeazaPretMediu(Nod* lista) {
 	return suma/nrMasini;
 }
 
-void stergeMasiniDinSeria(/*lista masini*/ char serieCautata) {
-	//sterge toate masinile din lista care au seria primita ca parametru.
-	//tratati situatia ca masina se afla si pe prima pozitie, si pe ultima pozitie
+void stergeMasiniDinSeria(Nod** lista,  char serieCautata) {
+	while ((*lista) != NULL) {
+		if ((*lista)->info.serie == serieCautata) {
+			Nod* aux = *lista;
+			*lista = (*lista)->next;
+			if (aux->info.model)
+				free(aux->info.model);
+			if (aux->info.numeSofer)
+				free(aux->info.numeSofer);
+		}else
+		lista = &(*lista)->next;//adresa pointerului catre nodul urm
+		//* se aplica pe lista, & se aplica pe next
+
+		//am fi putut de exemplu si sa salvam urm nod
+		//sa dezalocam direct pe *lista, apoi sa i dam la 
+		//*lista ce am salvat anterior
+	}
 }
 
-float calculeazaPretulMasinilorUnuiSofer(/*lista masini*/ const char* numeSofer) {
-	//calculeaza pretul tuturor masinilor unui sofer.
-	return 0;
+float calculeazaPretulMasinilorUnuiSofer(Nod* lista, const char* numeSofer) {
+	float suma = 0;
+	while (lista != NULL) {
+		if (strcmp(lista->info.numeSofer, numeSofer) == 0)
+			suma += lista->info.pret;
+		lista = lista->next;
+	}
+	return suma;
 }
 
 int main() {
@@ -128,7 +161,19 @@ int main() {
 	afisareListaMasini(lista);
 	float pretMediu = calculeazaPretMediu(lista);
 	printf("\npretul mediu este: %.2f", pretMediu);
-	dezalocareListaMasini(&lista);
+
+	Nod* lista2 = citireListaMasiniDinFisierInceput("masini.txt");
+	printf("\nlista 2 cu citire cu adaugare la inceput: \n");
+	afisareListaMasini(lista2);
+
+	float sumaSofer = calculeazaPretulMasinilorUnuiSofer(lista, "Ionescu");
+	printf("\nIonescu are masini in valoare de: %.2f\n", sumaSofer);
+
+	printf("\n dupa stergere masini din seria A: \n");
+	stergeMasiniDinSeria(&lista, 'A');
 	afisareListaMasini(lista);
+	dezalocareListaMasini(&lista);
+	dezalocareListaMasini(&lista2);
+	//afisareListaMasini(lista);
 	return 0;
 }
