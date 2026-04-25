@@ -1,0 +1,10 @@
+1,Milka Oreo,8.5,100,Milka,L
+2,Poiana Alune,6.7,90,Poiana,L
+3,Kinder Bueno,7.9,86,Kinder,C
+4,Lindt Excellence,14.5,100,Lindt,N
+5,Heidi Dark,9.8,80,Heidi,N
+6,Toblerone,12.3,100,Toblerone,L
+7,Primola Capsuni,5.9,95,Primola,F
+8,Snickers Bar,6.2,75,Mars,C
+9,Bounty Coconut,6.4,80,Mars,F
+10,Milka White,8.9,100,Milka,A

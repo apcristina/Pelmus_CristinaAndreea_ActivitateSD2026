@@ -1,0 +1,15 @@
+1;Bucuresti;Madrid;WizzAir;3.8;120
+2;Cluj;Roma;Ryanair;1.9;85
+3;Timisoara;Paris;AirFrance;2.7;140
+4;Iasi;Londra;Tarom;3.2;150
+5;Bucuresti;Berlin;WizzAir;2.1;110
+6;Cluj;Barcelona;Ryanair;2.6;130
+7;Bucuresti;Amsterdam;Tarom;2.9;125
+8;Iasi;Dublin;Ryanair;3.5;160
+9;Timisoara;Milano;WizzAir;1.7;95
+10;Constanta;Istanbul;TurkishAirlines;1.1;70
+11;Bucuresti;Lisabona;AirFrance;4.1;180
+12;Cluj;Vienna;WizzAir;1.3;75
+13;Bucuresti;Bruxelles;Tarom;2.7;115
+14;Iasi;Munchen;TurkishAirlines;2.4;105
+15;Timisoara;Copenhaga;Ryanair;2.8;135
