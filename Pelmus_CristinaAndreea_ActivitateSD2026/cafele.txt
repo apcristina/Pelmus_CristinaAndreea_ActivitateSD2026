@@ -1,0 +1,10 @@
+1,Latte,15.5,250,Brazilia,M
+2,Espresso,9.0,50,Italia,S
+3,Cappuccino,14.0,200,Columbia,M
+4,Americano,12.0,300,Etiopia,L
+5,Mocha,16.5,220,Guatemala,M
+6,Ristretto,8.0,30,Italia,S
+7,Flat White,15.0,180,Brazilia,M
+8,Macchiato,10.0,60,Columbia,S
+9,Affogato,17.0,200,Italia,M
+10,Irish Coffee,18.5,250,Ireland,L
