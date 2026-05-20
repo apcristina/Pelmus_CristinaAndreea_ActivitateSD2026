@@ -55,7 +55,7 @@ void filtreazaHeap(Heap heap, int pozNod) {
     if (pozNod >= 0 && pozNod < heap.lungime) {
 
         int pozSt = 2 * pozNod + 1;
-        int pozDr = 2 * pozNod + 1;
+        int pozDr = 2 * pozNod + 2;
         int pozMax = pozNod;
 
         if (pozSt<heap.lungime && heap.vector[pozSt].suprafata>heap.vector[pozMax].suprafata)
@@ -68,7 +68,7 @@ void filtreazaHeap(Heap heap, int pozNod) {
             heap.vector[pozMax] = heap.vector[pozNod];
             heap.vector[pozNod] = aux;
 
-            if (pozMax <= (heap.lungime - 2) / 2)
+            if (pozMax <= (heap.nrApartamente - 2) / 2)
                 filtreazaHeap(heap, pozMax);
         }
     }
@@ -107,7 +107,7 @@ Apartament extrageHeap(Heap* heap) {
 
         heap->nrApartamente--;
 
-        for (int i = (heap->lungime - 2) / 2; i >= 0; i--)
+        for (int i = (heap->nrApartamente - 2) / 2; i >= 0; i--)
             filtreazaHeap(*heap, i);
         return heap->vector[heap->nrApartamente];
     }
